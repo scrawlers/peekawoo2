@@ -1,0 +1,61 @@
+extends layout
+
+block content
+    body.container.gender-page
+        .head.peekawoo-logo
+            .container
+                .gender-container
+                    .choose-gender-box
+                        form(method='get', action='/loading', id='option')
+                            if(profile=='male')
+                                button#but-male.male.s(type='button', style='border: 5px solid rgb(102, 179, 207);')
+                                    input(type='radio', id='gender-m', name='gender-m', value='male', hidden='true', checked='true')
+                            else
+                                if(provider=='twitter')
+                                    button#but-male.male.s(type='button', style='border: 5px solid rgb(102, 179, 207);')
+                                        input(type='radio', id='gender-m', name='gender-m', value='male', hidden='true', checked='true')
+                                else
+                                    button#but-male.male(type='button')
+                                        input(type='radio', id='gender-m', name='gender-m', value='male', hidden='true')
+                            if(profile=='female')
+                                button#but-female.female(type='button', style='border: 5px solid rgb(234, 152, 91);')
+                                    input(type='radio', id='gender-f', name='gender-f', value='female', hidden='true', checked='true')
+                            else
+                                button#but-female.female(type='button')
+                                    input(type='radio', id='gender-f', name='gender-f', value='female', hidden='true')
+                            .username-box
+                                .username-wrapper
+                                    input#username(type='text', name='codename', maxlength='8')
+                                button#submit(type='submit',name='submit')
+                script
+                    $('#but-male').click(function(ev) {
+                        $('#but-male').not(this).css('border', '0px solid #66b3cf').removeClass('s');
+                        if(!$(this).is('.s')){
+                            $(this).css('border', '5px solid #66b3cf').addClass('s');
+                            $('#gender-m').attr("checked", true);
+                            $('#gender-f').attr("checked", false);
+                            $('#but-female').css('border', '0px solid #ea985b').removeClass('s');
+                        }
+                        else{
+                            $('#gender-m').attr("checked", false);
+                            $(this).css('border', '0px solid #66b3cf').removeClass('s');
+                            $('#but-female').css('border', '0px solid #66b3cf').removeClass('s');
+                        }
+                    });
+                    $('#but-female').click(function(ev) {
+                        $('#but-female').not(this).css('border', '0px solid #ea985b').removeClass('s');
+                        if(!$(this).is('.s')){
+                            $(this).css('border', '5px solid #ea985b').addClass('s');
+                            $('#gender-f').attr("checked", true);
+                            $('#gender-m').attr("checked", false);
+                            $('#but-male').css('border', '0px solid #66b3cf').removeClass('s');
+                        }
+                        else{
+                            $('#gender-f').attr("checked", false);
+                            $(this).css('border', '0px solid #ea985b').removeClass('s');
+                            $('#but-male').css('border', '0px solid #66b3cf').removeClass('s');
+                        }
+                    });
+                    $('#option').submit(function() {
+                        $('#username').val($('#username').val().replace(" ",""));
+                    });

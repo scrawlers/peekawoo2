@@ -1,0 +1,70 @@
+extends layout
+
+block content
+    body.container.chat-page
+        .container.header-wrapper-chat
+            .signout-div
+                p#codename.pcn=user.codename
+                a#signout.signout(href="/ranking")
+                .header-chat
+        .chat-container
+            .photo-con
+                .chat-timer-div
+                    .chat-timer
+                        #left-time
+                            .dash(class="minutes_dash")
+                                .digit
+                                    .top(style='display: none;') 0
+                                .digit
+                                    .top(style='display: none;') 0
+                                span.colon_game :
+                            .dash(class="seconds_dash")
+                                .digit
+                                    .top(style='display: none;') 0
+                                .digit
+                                    .top(style='display: none;') 0
+                .current-photo
+                .next-photo
+                .previous-photo
+            .chat-view
+                .chatwindow
+                    .messagewindow
+            .chat-text
+                input#message(type='text', name='message')
+                button#reply(type='button',name='reply')
+                input(type='hidden',id='room', value=room.name)
+                input(type='hidden',id='chatm8', value=JSON.stringify(room))
+                input(type="hidden",id="user",value=JSON.stringify(user))
+                #r1.rate_widget
+                    #rate.ratings_chick()
+    script(src="/socket.io/socket.io.js")
+    script(defer, src="/javascripts/chat.js")
+    script
+        function set_by_offset1(min,sec) {
+            /*** room countdown ***/
+            $('#left-time').stopCountDown();
+            $('#left-time').setCountDown({
+                targetOffset: {
+                    'day':      0,
+                    'month':    0,
+                    'year':     0,
+                    'hour':     0,
+                    'min':      Number(min),
+                    'sec':      Number(sec)
+                }
+            });
+            $('#left-time').startCountDown();
+        }
+        $('.ratings_chick').click(
+            function(){
+                if($(this).is('.ratings_chick')){
+                    $(this).prevAll().andSelf().removeClass('ratings_chick');
+                    $(this).prevAll().andSelf().addClass('ratings_chick-sel');
+                }
+                else{
+                    $(this).prevAll().andSelf().removeClass('ratings_chick-sel');
+                    $(this).prevAll().andSelf().addClass('ratings_chick');
+                }
+            }
+        );
+        set_by_offset1(Number($("#min_11").html() + $("#min_12").html()),Number($("#sec_21").html() + $("#sec_22").html()));

@@ -1,0 +1,1516 @@
+body.home-page {
+    background: url("/img/hc-theme/instawoo-bg.png") no-repeat fixed center center / 1080px 685px transparent;
+    margin: 0;
+    position: inherit;
+}
+body.gender-page {
+    background-attachment: fixed;
+    background-clip: border-box;
+    background-color: transparent;
+    background-image: url("/img/hc-theme/instawoo-bg.png");
+    background-origin: padding-box;
+    background-repeat: no-repeat;
+    background-size: 1020px 685px;
+    background-position: center center;
+}
+body.chat-page {
+    background-attachment: fixed;
+    background-clip: border-box;
+    background-color: transparent;
+    background-image: url("/img/hc-theme/instawoo-chat-bg.png");
+    background-origin: padding-box;
+    background-repeat: no-repeat;
+    background-size: 1020px 685px;
+    background-position: center center;
+}
+.header-wrapper {
+    height: 200px;
+    width: 100%;
+}
+
+.header-wrapper-woos {
+    height: 100px;
+    width: 100%;
+}
+
+.header-wrapper-chat {
+    height: 79px;
+    width: 100%;
+}
+
+.header-wrapper-woos .header-woos {
+    background-image: url("/img/hc-theme/instawoo-logo-small.png");
+    background-origin: padding-box;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: 245px 100px;
+    display: block;
+    height: 120px;
+    margin: 0 auto;
+    position: relative;
+    width: 245px;
+}
+
+.chat-page .chat-container {
+	color: #333333;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 14px;
+    line-height: 1.42857;
+    height: 300px;
+}
+
+.header-wrapper .header {
+    background-image: url("/img/hc-theme/instawoo-logo.png");
+    background-origin: padding-box;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: 601px 218px;
+    display: block;
+    height: 200px;
+    margin: 0 auto;
+    position: relative;
+    top: 10%;
+    width: 601px;
+}
+
+.header-wrapper-chat .signout-div .header-chat {
+    background-image: url("/img/hc-theme/instawoo-logo-small.png");
+    background-origin: padding-box;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: 245px 100px;
+    display: block;
+    height: 79px;
+    margin: 0 auto;
+    position: relative;
+    width: 245px;
+}
+
+.header-wrapper-chat .signout-div {
+    display: block;
+    height: 65px;
+    margin: 0 auto;
+    position: relative;
+    width: 700px;
+}
+
+.header-wrapper .user-header {
+    background-attachment: fixed;
+    
+    background-clip: border-box;
+    background-color: transparent;
+    background-image: url("/img/hc-theme/bannerline.png");
+    background-origin: padding-box;
+    background-position: 98% -9px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    
+    display: block;
+    float: right;
+    height: 43px;
+    margin: -124px 0 -49px;
+    top: -18px;
+    width: 378px;
+}
+.chatwindow {
+    display: block;
+    height: 332px;
+    margin: 0 auto;
+    position: relative;
+    width: 100%;
+}
+.messagewindow {
+    border: 0 solid black;
+    font-family: helvetica;
+    height: 233px;
+    left: -44.5px;
+    margin: 0 auto;
+    overflow-y: auto;
+    position: relative;
+    top: 66px;
+    width: 545px;
+}
+.messagewindow img.leftp {
+    background-color: transparent;
+    background-repeat: no-repeat;
+    height: 63px;
+    position: absolute;
+    text-align: left;
+    width: 61px;
+}
+
+.messagewindow img.rightp {
+    border-radius: 50% 50% 50% 50%;
+    height: 59px;
+    margin: 0 auto;
+    padding: 11px 0 0 429px;
+    position: absolute;
+    text-align: left;
+    width: 23px;
+}
+
+.me-chat {
+    background-color: transparent;
+    background-image: url("/img/hc-theme/instawoo-baloon-male.png");
+    background-position: -5px -3px;
+    background-repeat: no-repeat;
+    display: block;
+    height: 64px;
+    margin: -50px 0 0 76px;
+    padding: 4px 17px 18px 18px;
+    position: relative;
+    text-align: left;
+    width: 317px;
+}
+
+.topic_per_room {
+	display: block;
+	margin: 0 auto;
+	position: relative;
+	text-align: center;
+	width: 317px;
+	height: 20px;
+	border: 1px solid;
+}
+
+.you-chat {
+    background-color: transparent;
+    background-image: url("/img/hc-theme/instawoo-baloon-female.png");
+    background-position: -2px -7px;
+    background-repeat: no-repeat;
+    display: block;
+    height: 55px;
+    margin: -50px 0 0 174px;
+    padding: 10px;
+    position: relative;
+    right: 26px;
+    text-align: left;
+    width: 294px; 
+}
+
+.header-wrapper-chat .signout-div .signout {
+    background: url("/img/hc-theme/instawoo-chatsignout.png") no-repeat scroll right center transparent;
+    display: block;
+    float: right;
+    height: 41px;
+    position: relative;
+    width: 330px;
+}
+
+.chat-container .photo-con .chat-timer-div {
+    background: url("/img/hc-theme/instawoo-chattimer.png") no-repeat scroll center -112px / 173px 166px transparent;
+    border: 0 solid;
+    height: 72px;
+    left: 271px;
+    margin: 0 auto;
+    opacity: 0.55;
+    position: absolute;
+    top: 143px;
+    width: 158px;
+    z-index: 999;
+}
+.chat-container .photo-con .chat-timer-div .chat-timer{
+    
+}
+
+.chat-container .photo-con .current-photo {
+    border: 6px solid #5C5353;
+    border-radius: 100px 100px 100px 100px;
+    height: 162px;
+    margin: 0 auto;
+    position: relative;
+    top: 20px;
+    width: 162px;
+    z-index: 998;
+}
+.chat-container .photo-con .next-photo {
+    background: url("/img/hc-theme/instawoo-chat-photoblack.png") no-repeat scroll center center / 135px 135px transparent;
+    border: 6px solid #5C5353;
+    border-radius: 100px 100px 100px 100px;
+    display: block;
+    float: right;
+    height: 126px;
+    margin: 0 auto;
+    position: relative;
+    right: 48px;
+    top: -124px;
+    width: 126px;
+    z-index: 999;
+}
+
+.chat-container .photo-con {
+    background: url("/img/hc-theme/instawoo-chatarrow.png") no-repeat scroll center center / 428px 90px transparent;
+    border: 0px solid black;
+    display: block;
+    height: 205px;
+    margin: 0 auto;
+    position: relative;
+    width: 700px;
+}
+
+    .chat-container .photo-con .next-photo-noframe{
+    border: 6px solid white;
+    border-radius: 100px 100px 100px 100px;
+    display: block;
+    float: right;
+    height: 126px;
+    margin: 0 auto;
+    position: relative;
+    right: 53px;
+    top: -110px;
+    width: 126px;
+    z-index: 299;
+}
+    
+.chat-container .photo-con .previous-photo {
+    border: 6px solid #5C5353;
+    border-radius: 100px 100px 100px 100px;
+    display: block;
+    float: left;
+    height: 126px;
+    left: 43px;
+    margin: 0 auto;
+    position: relative;
+    top: -124px;
+    width: 126px;
+    z-index: 999;
+}
+.chat-container .chat-view {
+    background-attachment: inherit;
+    background-clip: padding-box;
+    background-color: transparent;
+    background-image: url("/img/hc-theme/instawoo-chatwindow.png");
+    background-origin: content-box;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: 85% 100%;
+    display: block;
+    height: 400px;
+    margin: 0 auto;
+    position: relative;
+    top: -68px;
+    width: 700px;
+    z-index: 900;
+}
+.chat-container .chat-text {
+    border: 0 solid black;
+    height: 70px;
+    margin: 0 auto;
+    position: relative;
+    top: -145px;
+    width: 700px;
+    z-index: 991;
+}
+.chat-container .chat-text .message-box {
+    padding: 2px 0px 0 0%;
+}
+.chat-container .chat-text #message {
+    color: #5C5353;
+    display: block;
+    font-family: helvetica;
+    font-size: 20px;
+    height: 35px;
+    left: 150px;
+    position: relative;
+    text-align: left;
+    top: 11px;
+    width: 51%;
+}
+.chat-container .chat-text #reply {
+    background-color: transparent;
+    border: 0 solid black;
+    display: block;
+    float: right;
+    height: 50px;
+    position: relative;
+    right: 72px;
+    top: -35px;
+    width: 95px;
+}
+.header-wrapper .user-header h2 {
+    background-color: transparent;
+    color: white;
+    display: block;
+    font-family: "Georgia";
+    font-size: 21px;
+    height: 36px;
+    margin: 3px;
+    padding-left: 12px;
+    text-align: left;
+    width: 182px;
+    float: left;
+}
+.homepage-container {
+    height: 100%;
+    overflow: hidden;
+    position: inherit;
+    width: 100%;
+}
+
+.homepage-container .login-bg {
+    background-attachment: inherit;
+    background-clip: padding-box;
+    background-color: transparent;
+    background-image: url("/img/hc-theme/index-bg.png");
+    background-origin: content-box;
+    background-position: 10px 1px;
+    background-repeat: no-repeat;
+    background-size: 58% 95%;
+    height: 281px;
+    margin: -285px 0 85px 8%;
+    width: 100%;
+}
+
+.homepage-container .login-container {
+    background-attachment: inherit;
+    background-clip: padding-box;
+    background-color: transparent;
+    background-image: url("/img/hc-theme/instawoo-signin.png");
+    background-origin: content-box;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: 390px 265px;
+    border: 6px solid #CFCBBC;
+    border-radius: 20px 20px 20px 20px;
+    height: 265px;
+    margin: 0 auto;
+    position: relative;
+    top: 10%;
+    width: 400px;
+}
+.gender-container {
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+}
+.gender-container .choose-gender-box {
+    background-attachment: inherit;
+    background-clip: border-box;
+    background-color: rgba(0, 0, 0, 0);
+    background-image: url("/img/hc-theme/instawoo-gender-form.png");
+    background-origin: padding-box;
+    background-position: center top;
+    background-repeat: no-repeat;
+    background-size: 400px 300px;
+    border: 5px solid #B5AF99;
+    border-radius: 20px 20px 20px 20px;
+    display: block;
+    height: 300px;
+    left: 38%;
+    margin: 205px auto auto;
+    width: 400px;
+}
+.gender-container .choose-gender-box input {
+    color: white;
+    display: none;
+    text-align: left;
+    width: 0;
+}
+.gender-container .choose-gender-box .username-wrapper {
+    padding: 13% 23% 5% 0;
+}
+form {
+    background-color: transparent;
+    height: 100%;
+}
+.gender-container .choose-gender-box #username {
+    border: 0 solid;
+    color: #584F4F;
+    display: block;
+    float: left;
+    font-family: helvetica;
+    font-size: 26.47px;
+    height: 21px;
+    margin: 0 -19%;
+    position: relative;
+    text-align: left;
+    width: 231px;
+}
+.gender-container .choose-gender-box .male {
+    background-attachment: inherit;
+    background-clip: border-box;
+    background-color: transparent;
+    background-image: url("/img/hc-theme/instawoo-gender-male.png");
+    background-origin: padding-box;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: 95px 85px;
+    border: 0 solid;
+    display: block;
+    float: left;
+    height: 85px;
+    left: 22%;
+    margin: 0 1px;
+    position: relative;
+    top: 29%;
+    width: 95px;
+    border-radius: 25px 25px 25px 25px;
+}
+.gender-container .choose-gender-box .male .s {
+    background-position: center center;
+    border: 3px solid #000000;
+}
+.gender-container .choose-gender-box .female {
+    background-attachment: inherit;
+    background-clip: border-box;
+    background-color: transparent;
+    background-image: url("/img/hc-theme/instawoo-gender-female.png");
+    background-origin: padding-box;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: 95px 85px;
+    border: 0px solid;
+    display: block;
+    float: right;
+    height: 85px;
+    margin: 0 1px;
+    position: relative;
+    right: 22%;
+    top: 29%;
+    width: 95px;
+    border-radius: 25px 25px 25px 25px;
+}
+
+.gender-container .choose-gender-box .username-box {
+    background-attachment: inherit;
+    background-clip: padding-box;
+    background-color: transparent;
+    background-image: url("/img/hc-theme/instawoo-gender-codename.png");
+    background-origin: padding-box;
+    background-position: center center;
+    background-repeat: no-repeat;
+    border: 0 solid;
+    display: block;
+    height: 100px;
+    margin: 0 auto;
+    position: relative;
+    top: 64%;
+    width: 350px;
+}
+.gender-container .choose-gender-box #submit {
+    background: none repeat scroll 0 0 transparent;
+    border: 0 solid;
+    bottom: 40px;
+    display: block;
+    float: right;
+    height: 35px;
+    left: 79%;
+    position: absolute;
+    top: 45%;
+    width: 60px;
+}
+.sb-twitter {
+    background-attachment: inherit;
+    background-clip: border-box;
+    background-color: transparent;
+    background-image: url("/img/hc-theme/instawoo-tw.png");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: 300px 42px;
+    display: block;
+    height: 42px;
+    margin: 0 auto;
+    position: relative;
+    top: -4px;
+    width: 300px;
+}
+.sb-facebook {
+    background-attachment: inherit;
+    background-clip: border-box;
+    background-color: transparent;
+    background-image: url("/img/hc-theme/instawoo-fb.png");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: 300px 42px;
+    display: block;
+    height: 42px;
+    margin: 0 auto;
+    position: relative;
+    top: -5px;
+    width: 300px;
+}
+footer {
+    background: url("/img/hc-theme/footer-line.png") repeat-x scroll 0 0 / contain transparent;
+    bottom: 0;
+    height: 50px;
+    padding-top: 30px;
+    position: fixed;
+    text-align: center;
+    width: 100%;
+}
+footer a, footer p {
+    color: #CFB3A0;
+    font-size: 80%;
+    line-height: 0;
+    text-decoration: none;
+}
+.cpimg {
+    border-radius: 100px 100px 100px 100px;
+    height: 163px;
+    margin: -0.45px auto 0 0;
+    width: 162px;
+}
+
+
+.npimg {
+    border-radius: 37px 37px 37px 37px;
+    display: block;
+    height: 98px;
+    left: 79px;
+    position: relative;
+    top: 48px;
+    width: 98px;
+}
+
+
+.ppimg {
+    border-radius: 60px 60px 60px 60px;
+    display: block;
+    height: 114px;
+    left: 0px;
+    position: relative;
+    top: 0px;
+    width: 114px;
+    float: left;
+}
+
+.pcn {
+    height: 26px;
+    margin: -2% 0;
+    width: 52px;
+    hidden: hidden;
+    font-size: 0px;
+}
+
+
+
+.ranking-container .ranking-selection-box .ranking-selection-list .ranking-left .rate_widget .ratings_chick{
+    background: url("/img/hc-theme/chick-hide.png") no-repeat scroll 0 -5px transparent;
+    float: left;
+    height: 34px;
+    padding: 3px;
+    width: 36px;
+    margin: -13px -2px;
+}
+
+.ranking-container .ranking-selection-box .ranking-selection-list .ranking-left .rate_widget .ratings_chick-sel {
+    background: url("/img/hc-theme/chick-show.png") no-repeat scroll 0 -5px transparent;
+    float: left;
+    height: 34px;
+    padding: 3px;
+    width: 36px;
+    margin: -13px -2px;
+}
+
+.ranking-container .ranking-selection-box .ranking-selection-list .ranking-right .rate_widget .ratings_chick{
+  background: url("/img/hc-theme/chick-hide.png") no-repeat scroll 0 -5px transparent;
+    float: left;
+    height: 34px;
+    padding: 3px;
+    width: 36px;
+    margin: -13px -2px;
+}
+
+
+.ranking-container .ranking-selection-box .ranking-selection-list .ranking-right .rate_widget .ratings_chick-sel{
+  background: url("/img/hc-theme/chick-show.png") no-repeat scroll 0 -5px transparent;
+    float: left;
+    height: 34px;
+    padding: 3px;
+    width: 36px;
+}
+
+.ranking-container .ranking-selection-box .ranking-selection-list .ranking-left .rate_widget {  
+    border: 0px solid #CCCCCC;
+    float: left;
+    height: 6%;
+    left: 0;
+    margin: 5% 0 6% 2px;
+    overflow: visible;
+    padding: 1px;
+    position: relative;
+    width: 55%;
+}
+
+.ranking-container .ranking-selection-box .ranking-selection-list .ranking-right .rate_widget {  
+    border: 0px solid #CCCCCC;
+    float: left;
+    height: 6%;
+    left: 0;
+    margin: 5% 0 6% 2px;
+    overflow: visible;
+    padding: 1px;
+    position: relative;
+    width: 55%;
+}
+
+.ranking-container .ranking-selection-box .ranking-selection-list .ranking-left .chat_photo {
+    border: 0 solid #CCCCCC;
+    border-radius: 35px 35px 35px 35px;
+    float: left;
+    height: 52px;
+    left: 24%;
+    margin: 0;
+    width: 53px;
+}
+
+.ranking-container .ranking-selection-box .ranking-selection-list .ranking-right .chat_photo {  
+    border: 0 solid #CCCCCC;
+    border-radius: 10px 10px 10px 10px;
+    float: left;
+    height: 48px;
+    left: 32%;
+    margin: 8px 7px;
+    width: 47px;
+}
+
+.ranking-container .ranking-selection-box .ranking-selection-list .ranking-left .rate_widget .ratings_vote {  
+    background: url('/img/hc-theme/chick-show.png') no-repeat scroll 0 -5px transparent;  
+}
+
+.ranking-container .ranking-selection-box .ranking-selection-list .ranking-right .rate_widget .ratings_vote {  
+    background: url('/img/hc-theme/chick-show.png') no-repeat scroll 0 -5px transparent;  
+}
+
+.ranking-container .ranking-selection-box .ranking-selection-list .ranking-left .rate_widget .ratings_over {  
+    background: url('/img/hc-theme/chick-show.png') no-repeat scroll 0 -5px transparent;  
+}
+
+.ranking-container .ranking-selection-box .ranking-selection-list .ranking-right .rate_widget .ratings_over {  
+    background: url('/img/hc-theme/chick-show.png') no-repeat scroll 0 -5px transparent;  
+}
+
+.ranking-container .ranking-selection-box .ranking-selection-list {  
+    border: 0 solid #CCCCCC;
+    display: block;
+    height: 325px;
+    margin: 0 auto;
+    position: relative;
+    top: 40px;
+    width: 467px;
+}
+
+.ranking-container .ranking-selection-box .ranking-selection-list .ranking-left{  
+    border: 0 solid #000000;
+    display: block;
+    height: auto;
+    left: 40px;
+    position: relative;
+    top: 2px;
+    width: 79%;
+}
+
+.ranking-container .ranking-selection-box .ranking-selection-list .ranking-right{  
+    border: 0 solid #000000;
+    display: block;
+    float: right;
+    height: auto;
+    position: relative;
+    right: 40px;
+    top: 2px;
+    width: 35%;
+}
+
+.ranking-container .ranking-selection-box .ranking-selection-list .ranking-left .chat-mate {
+    border: 0 solid #000000;
+    color: #584F4F;
+    float: left;
+    font-family: helvetica;
+    font-size: 20px;
+    margin: 5% 22px;
+    vertical-align: middle;
+    width: 70px;
+}
+.ranking-container {
+  width: 100%;
+  height: 510px;
+  overflow: hidden;
+  position: relative;
+}
+
+.ranking-container .ranking-selection-box {
+  background: url("/img/hc-theme/instawoo-woos-ranking.png") no-repeat scroll 51.5% -7px transparent;
+  height: 500px;
+  margin: auto;
+  width: 710px;  
+}
+
+.ranking-container .ranking-selection-box .good{
+  border: 0px solid #000000;
+  background-attachment: inherit;
+    background-clip: inherit;
+    background-color: transparent;
+    background-image: url("/img/hc-theme/g-score.png");
+    background-origin: padding-box;
+    background-position: 1px 0;
+    background-repeat: no-repeat;
+    height: 10%;
+    width: 2.5%;
+   margin: 110px 0 0 34%;
+}
+
+.ranking-container .ranking-selection-box .submit-part {
+    background-attachment: fixed;
+    background-clip: inherit;
+    background-color: transparent;
+    background-image: none;
+    background-origin: padding-box;
+    background-repeat: no-repeat;
+    border: 0 solid #000000;
+    display: block;
+    height: 61px;
+    margin: 0 auto;
+    position: relative;
+    top: 40px;
+    width: 467px;
+}
+
+.ranking-container .ranking-selection-box .submit-part #btn-woos {
+    color: white;
+    display: block;
+    font-family: helvetica;
+    font-size: 23px;
+    margin: 0 auto;
+    position: relative;
+    text-align: center;
+    top: -39px;
+}
+
+.ranking-container .ranking-selection-box #selection-title {
+    color: #584F4F;
+    display: block;
+    margin: 0 auto;
+    position: relative;
+    text-align: center;
+    top: 25px;
+    width: 465px;
+}
+
+.ranking-container .ranking-selection-box #selection-para {
+    color: #584f4f;
+    display: block;
+    margin: 0 auto;
+    position: relative;
+    text-align: center;
+    top: 25px;
+    width: 465px;
+}
+
+.ranking-container .ranking-selection-box .submit-part #submit_rating{
+    background: url("/img/hc-theme/instawoo-woos-btn.png") no-repeat scroll center center transparent;
+    border: 0 solid #000000;
+    cursor: pointer;
+    display: block;
+    height: 80%;
+    margin: 0 auto;
+    width: 100%;
+}
+
+body.ranking-page {
+    background-attachment: fixed;
+    background-clip: border-box;
+    background-color: transparent;
+    background-image: url("/img/hc-theme/instawoo-chat-bg.png");
+    background-origin: padding-box;
+    background-repeat: no-repeat;
+    background-size: 1020px 685px;
+    background-position: center center;
+}
+.ranking-container .ranking-selection-box .ranking-selection-list .ranking-left .img-photo {
+    border: 4px solid #EA985B;
+    border-radius: 50px 50px 50px 50px;
+    float: left;
+    height: 60px;
+    left: 32%;
+    margin: 5px 0;
+    top: 2%;
+    width: 60px;
+}
+
+.ranking-container .ranking-selection-box .ranking-selection-list .ranking-right .img-photo {
+    border: 4px solid #EA985B;
+    border-radius: 50px 50px 50px 50px;
+    float: left;
+    height: 60px;
+    left: 32%;
+    margin: 5px 0;
+    top: 2%;
+    width: 60px;
+}
+
+.ranking-result-form {
+    background-attachment: inherit;
+    background-clip: border-box;
+    background-color: transparent;
+    background-image: url("/img/hc-theme/ranking-foundmatch-form.png");
+    background-origin: padding-box;
+    background-position: 0 0;
+    background-repeat: no-repeat;
+    background-size: auto auto;
+    border: 0px solid;
+    display: block;
+    height: 100%;
+    position: relative;
+    width: 100%;
+}
+.ranking-result-form .found-facebook {
+    background-attachment: inherit;
+    background-clip: border-box;
+    background-color: transparent;
+    background-image: url("/img/hc-theme/found-facebook.png");
+    background-origin: padding-box;
+    background-position: -1px 2px;
+    background-repeat: no-repeat;
+    background-size: auto auto;
+    border: 0 none;
+    color: white;
+    display: block;
+    font-family: georgia;
+    font-size: 9pt;
+    font-weight: bold;
+    height: 10%;
+    left: 258px;
+    line-height: 34px;
+    position: relative;
+    text-align: justify;
+    text-indent: 36px;
+    top: -63px;
+    width: 44%;
+}
+.ranking-result-form .found-twitter {
+    background-attachment: inherit;
+    background-clip: border-box;
+    background-color: transparent;
+    background-image: url("/img/hc-theme/found-twitter.png");
+    background-origin: padding-box;
+    background-position: -1px 2px;
+    background-repeat: no-repeat;
+    background-size: auto auto;
+    border: 0 none;
+    color: white;
+    display: block;
+    font-family: georgia;
+    font-size: 9pt;
+    font-weight: bold;
+    height: 10%;
+    left: 258px;
+    line-height: 35px;
+    position: relative;
+    text-align: justify;
+    text-indent: 35px;
+    top: -52px;
+    width: 44%;
+}
+.ranking-result-form .peaks {
+    border-radius: 68px 68px 68px 68px;
+    display: block;
+    height: 189px;
+    left: 36px;
+    position: relative;
+    top: 100px;
+    width: 183px;
+}
+
+.ui-widget-content.ui-dialog {
+    background: url("http://64.19.142.13/code.jquery.com/ui/1.10.2/themes/smoothness/images/ui-bg_flat_75_ffffff_40x100.png") no-repeat scroll 50% 50% transparent;
+    background-color: transparent;
+    border: 0 solid;
+    padding: 0
+}
+.ui-dialog .ui-dialog-titlebar {
+    background: none repeat scroll 0 0 transparent;
+    border: 0 none;
+    padding: 0;
+    position: relative;
+}
+
+#chatname {
+    color: white;
+    font-family: georgia;
+    font-size: 35px;
+    font-weight: bold;
+    left: 259px;
+    margin-bottom: 0;
+    margin-top: 0;
+    position: relative;
+    top: -74px;
+    width: 235px;
+}
+
+#foundfb {
+    text-decoration: none;
+}
+
+#foundtw {
+    text-decoration: none;
+}
+#left-label {
+    font-family: georgia;
+    font-size: 18px;
+    margin: 2px 10px 10px 145px;
+    text-align: center;
+    width: 100px;
+    color: white;
+}
+.count-timer {
+    float: right;
+    position: absolute;
+    right: 16%;
+    top: 5%;
+    width: 110px;
+}
+#chat-code {
+    color: white;
+    float: left;
+    font-family: georgia;
+    font-size: 23px;
+    font-weight: bold;
+    left: 17%;
+    margin: auto;
+    position: absolute;
+    text-align: left;
+    top: 13%;
+    width: 100px;
+    
+}
+#game_label {
+    color: white;
+    font-size: 20px;
+    width: 100px;
+}
+#game_left {
+    color: white;
+    font-size: 20px;
+    width: 100px;
+}
+.dash {
+    border: 0 solid blue;
+    color: white;
+    float: left;
+    height: 26px;
+    width: 28px;
+}
+.dash_title {
+    float: left;
+    font-size: 20px;
+    height: 18px;
+    padding: 0 7px;
+    position: relative;
+    width: 49px;
+}
+.digit {
+    display: block;
+    float: left;
+    height: 23px;
+    width: 12px;
+}
+.top {
+    font-family: georgia;
+    font-size: 20px;
+    font-weight: bold;
+    height: 25px;
+    margin-left: -1px;
+    margin-top: 11px;
+    text-align: center;
+    width: 30px;
+}
+.bottom {
+    font-family: georgia;
+    font-size: 20px;
+    font-weight: bold;
+    height: 25px;
+    padding: 0px 1px;
+    text-align: center;
+    width: 23px;
+}
+#countdown_dashboard {
+    width: 150px;
+    height: 70px;
+    float: left;
+}
+.colon_game {
+    display: block;
+    float: left;
+    font-weight: bold;
+    height: 10px;
+    left: 10px;
+    position: relative;
+    top: 14px;
+    width: 1px;
+}
+#left-time {
+    border: 0 solid white;
+    float: right;
+    height: 30px;
+    margin: 0 auto;
+    position: relative;
+    right: 38px;
+    width: 60px;
+}
+.chat-page .chat-container .chat-text .rate_widget .ratings_chick {
+    background: url("/img/hc-theme/chick-hide.png.png") no-repeat scroll 0 -5px / 80px 80px transparent;
+    height: 71px;
+    margin: 0 auto;
+    width: 80px;
+}
+.chat-page .chat-container .chat-text .rate_widget .ratings_chick-sel   {
+    background: url("/img/hc-theme/chick-show.png.png") no-repeat scroll 0 -5px  / 80px 80px transparent;
+    height: 71px;
+    margin: 0 auto;
+    width: 80px;
+}
+
+.chat-page .chat-container .chat-text .rate_widget {  
+    display: block;
+    float: left;
+    height: 72px;
+    left: 60px;
+    margin: 0 auto;
+    position: relative;
+    top: -45px;
+    width: 83px;
+    z-index: 999;
+}
+
+.chat-page .chat-container .chat-text .rate_widget .ratings_vote {  
+    background: url("/img/hc-theme/HatchChick-Show.png") no-repeat scroll 0 -5px  / 80px 80px transparent;
+    height: 71px;
+    margin: 0 auto;
+    width: 80px;
+}
+
+.chat-page .chat-container .rate_widget .ratings_over {
+    background: url("/img/hc-theme/HatchChick-Show.png") no-repeat scroll 0 -5px  / 80px 80px transparent;
+    height: 110px;
+    margin: 0 auto;
+    width: 110px;
+}
+
+.messagewindow .imgleft {
+    border: 4px solid #66B3CF;
+    border-radius: 30px 30px 30px 30px;
+    height: 49px;
+    left: 8px;
+    position: relative;
+    width: 50px;
+}
+
+.messagewindow .imgright {
+    background-size: 0 11px;
+    border: 4px solid #EA985B;
+    border-radius: 50px 50px 50px 50px;
+    height: 49px;
+    margin: -4px -14px 10px 452px;
+    position: relative;
+    top: 10px;
+    width: 50px;
+}
+
+#label {
+    color: white;
+    font-family: georgia;
+    font-size: 24px;
+    height: 31px;
+    margin: 99px 23px;
+    padding: 1px 2px;
+    width: 65px;
+}
+.gender-container .choose-gender-box #option {
+    height: 100%
+    
+}
+.homepage-container .login-container .fb-tw-or {
+    color: #584F4F;
+    display: block;
+    height: 20px;
+    font-family: helvetica;
+    margin: 0 auto;
+    position: relative;
+    text-align: center;
+    top: 65px;
+    width: 300px;
+}
+
+.homepage-container .login-container .login-head {
+    color: #584F4F;
+    display: block;
+    font-family: helvetica;
+    height: 20px;
+    margin: 0 auto;
+    position: relative;
+    text-align: center;
+    top: 10px;
+    width: 335px;
+}
+
+.homepage-container .login-container .login-paraa {
+    color: #584F4F;
+    display: block;
+    font-family: helvetica;
+    font-size: 17px;
+    height: 20px;
+    margin: 0 auto;
+    position: relative;
+    text-align: center;
+    top: 40px;
+    width: 335px;
+}
+
+.homepage-container .login-container .login-parab {
+    color: #584F4F;
+    display: block;
+    font-family: helvetica;
+    font-size: 17px;
+    height: 20px;
+    margin: 0 auto;
+    position: relative;
+    text-align: center;
+    top: 40px;
+    width: 335px;
+}
+
+body.loading-page {
+    background-attachment: fixed;
+    background-clip: border-box;
+    background-color: transparent;
+    background-image: url("/img/hc-theme/Instawoo-waiting.png");
+    background-origin: padding-box;
+    background-position: center center;
+    background-repeat: no-repeat;
+    margin: 0;
+}
+.loading-container .loading {
+    background-attachment: inherit;
+    background-clip: padding-box;
+    background-color: rgba(0, 0, 0, 0);
+    background-image: url("/img/hc-theme/loading.gif");
+    background-origin: content-box;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: auto auto;
+    border: 0 solid;
+    display: block;
+    height: 71px;
+    margin-top: 517px;
+}
+
+#fblinkicon {
+	background-image: url("/img/hc-theme/linkfb.png");
+	background-position: center center;
+    background-repeat: no-repeat;
+    background-size: auto auto;
+    border: 1px solid blue;
+    display: block;
+    float: right;
+    height: 50px;
+    margin-top: 5px;
+    width: 50px;
+	
+}
+
+#twlinkicon {
+    background-image: url("/img/hc-theme/linktw.png");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: auto auto;
+    border: 1px solid blue;
+    display: block;
+    float: right;
+    height: 50px;
+    margin-top: 5px;
+    width: 50px;
+}
+
+.index-bg {
+    background-attachment: fixed;
+    background-image: url("/img/hc-theme/index-bg.png");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: auto auto;
+}
+
+.peekawoo-logo {
+    background-image: url("/img/hc-theme/peekawoo-logo.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: auto auto;
+    height: 158px;
+}
+
+.index-form {
+    background-clip: border-box;
+    background-image: url("/img/hc-theme/index-form.png");
+    background-origin: content-box;
+    background-position: center -4px;
+    background-repeat: no-repeat;
+    background-size: auto auto;
+    border: 0 solid;
+    display: block;
+    height: 285px;
+    margin-top: 2px;
+    opacity:0.78;
+}
+.index-form-container {
+    background-attachment: inherit;
+    border: 0 solid;
+    display: block;
+    height: 296px;
+    left: 44px;
+    margin-left: 284px;
+    margin-top: 218px;
+    top: -42px;
+    width: 373px;
+}
+.text-signin {
+    color: #FFFFFF;
+    font-family: times new roman;
+    font-size: 40pt;
+    font-style: regular;
+    font-weight: normal;
+    text-align:center;
+    color:#584f4f;
+}
+.text-signin2 {
+    color: #FFFFFF;
+    font-family: times new roman;
+    font-size: 14pt;
+    font-style: regular;
+    font-weight: normal;
+    text-align:center;
+    color:#584f4f;
+}
+.text-signin3 {
+    color: #FFFFFF;
+    font-family: times new roman;
+    font-size: 16px;
+    font-style: regular;
+    font-weight: normal;
+    text-align:center;
+    color:#584f4f;
+}
+
+.error-bg {
+    background-attachment: fixed;
+    background-image: url("/img/hc-theme/error-bg.png");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: 1020px 685px;
+}
+
+.facebooklogin {
+    background-attachment: inherit;
+    background-image: url("/img/hc-theme/index-fbbutton.png");
+    background-position: 32px center;
+    background-repeat: no-repeat;
+    background-size: auto auto;
+    border: 0px solid;
+    height: 51px;
+    margin: -24px auto auto;
+    width: 365px;
+}
+.twitterlogin {
+    background-image: url("/img/hc-theme/index-twitterbutton.png");
+    background-position: 32px center;
+    background-repeat: no-repeat;
+    background-size: auto auto;
+    border: 0 solid;
+    height: 48px;
+    left: 0;
+    margin: -7px auto auto;
+    width: 366px;
+}
+.error-bg {
+    background-attachment: fixed;
+    background-image: url("/img/hc-theme/subscribe-bg.png");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: auto auto;
+}
+
+.peekawoo-error-logo {
+    background-image: url("/img/hc-theme/error-logo.png");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: auto auto;
+    height: 158px;
+}
+.error-blue-image {
+    background-clip: border-box;
+    background-image: url("/img/hc-theme/error-blue.png");
+    background-origin: content-box;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: auto auto;
+    border: 0 solid;
+    display: block;
+    height: 377px;
+    margin-top: 130px;
+}
+.text-error1{
+    font-family: times new roman;
+    font-size: 44.19px;
+    font-style: regular;
+    font-weight: normal;
+    text-align:center;
+    color:#584f4f;
+    height:30px;
+}
+.text-error2{
+    font-family: times new roman;
+    font-size: 24.38px;
+    font-style: regular;
+    font-weight: normal;
+    text-align:center;
+    color:#584f4f;
+}
+
+.subscribe-image {
+    background-clip: border-box;
+    background-image: url("/img/hc-theme/subscribe-image.png");
+    background-origin: content-box;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: auto auto;
+    border: 0 solid;
+    display: block;
+    height: 377px;
+    margin-top: 95px;
+}
+.text-email {
+    border: 0px solid;
+    color: #584F4F;
+    font-family: helvetica;
+    font-size: 29.42px;
+    height: 41px;
+    margin: auto;
+    text-align: center;
+}
+.text-skipfornow {
+    color: #584F4F;
+    display: block;
+    font-family: helvetica;
+    font-size: 20px;
+    height: 41px;
+    margin: 0 auto;
+    text-decoration: underline;
+    text-align: center;
+    top: -71px;
+    width: 100%;
+}
+.subscribe-button {
+    background-image: url("/img/hc-theme/subscribe-button.png");
+    background-position: right center;
+    background-repeat: no-repeat;
+    background-size: auto auto;
+    border: 0 solid;
+    border-radius: 8px 8px 8px 8px;
+    height: 48px;
+    margin: -84px 0 0 571px;
+    width: 137px;
+}
+
+.loading-image {
+    background-clip: border-box;
+    background-image: url("/img/hc-theme/loadingimage.gif");
+    background-origin: content-box;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: auto auto;
+    border: 0 solid;
+    display: block;
+    height: 377px;
+    margin-top: 160px;
+}
+
+.follow-form-container {
+    background-attachment: inherit;
+    border: 0 solid;
+    display: block;
+    height: 296px;
+    left: 44px;
+    margin-left: 284px;
+    margin-top: 218px;
+    top: -42px;
+    width: 373px;
+}
+
+.subscribe2-container {
+    background-attachment: inherit;
+    border: 0 solid;
+    display: block;
+    height: 234px;
+    left: 44px;
+    margin-left: 227px;
+    margin-top: 170px;
+    top: 9px;
+    width: 480px;
+}
+.subscribe2-image-facebook {
+    background-clip: border-box;
+    background-image: url("/img/hc-theme/facebook.png");
+    background-origin: content-box;
+    background-position: -11px center;
+    background-repeat: no-repeat;
+    background-size: 128px 128px;
+    border: 0 solid;
+    border-radius: 21px 21px 21px 21px;
+    display: block;
+    height: 115px;
+    margin-top: 222px;
+    width: 116px;
+}
+.subscribe2-image-twitter {
+    background-clip: border-box;
+    background-image: url("/img/hc-theme/twitter.png");
+    background-origin: content-box;
+    background-position: center -11px;
+    background-repeat: no-repeat;
+    background-size: 128px 128px;
+    border: 0 solid;
+    border-radius: 14px 14px 14px 14px;
+    display: block;
+    height: 111px;
+    margin-left: 199px;
+    margin-top: -112px;
+    width: 117px;
+}
+.subscribe2-image-instagram {
+    background-clip: border-box;
+    background-image: url("/img/hc-theme/instagram.png");
+    background-origin: content-box;
+    background-position: -13px -4px;
+    background-repeat: no-repeat;
+    background-size: 128px 128px;
+    border: 0 solid;
+    border-radius: 19px 19px 19px 19px;
+    display: block;
+    height: 118px;
+    margin-left: 402px;
+    margin-top: -115px;
+    width: 112px;
+}
+.text-loading {
+    color: #584F4F;
+    font-family: times new roman;
+    font-size: 24.38px;
+    font-weight: normal;
+    margin-top: 251px;
+    text-align: center;
+}
+
+.sb-facebook {
+	background-attachment: inherit;
+    background-clip: border-box;
+    background-color: transparent;
+    background-image: url("/img/hc-theme/instawoo-fb.png");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: 300px 42px;
+    display: block;
+    height: 42px;
+    margin: 0 auto;
+    position: relative;
+    top: -5px;
+    width: 300px;
+}
