@@ -45,6 +45,11 @@ $(function(){
 		}
 		contmechatm8 = {user: user,mate:my_chatm8.male};
 	}
+	
+	socket.on('roomtopic',function(data){
+		$(".messagewindow").html("<p class='topic_per_room'><strong>TOPIC: "+data+"</strong></p>");
+	});
+	
 	//alert(list_gen);
 	//alert(list_gen[0]);
 	//alert(list_gen[0].id);

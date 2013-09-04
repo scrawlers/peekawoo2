@@ -22,6 +22,7 @@ var game_lock = false;
 var cycle = 0;
 var cycle_turn = false;
 var app = express();
+var topic = ["MOVIES","FOODS","PEOPLE","PLACES","GADGETS","COUNTRY","SCHOOL","LITERATURE"];
 app.http().io();
 // all environments
 
@@ -257,6 +258,7 @@ app.io.sockets.on('connection',function(socket){
 		console.log("++++checking req.data.room ++++");
 		console.log(req.data.room);
 		req.io.join(req.data.room);
+		app.io.room(req.data.room).broadcast('roomtopic',topic[Math.floor(Math.random() * topic.length)]);
 	});
 	
 	app.io.route('leave',function(req){
@@ -310,7 +312,7 @@ app.io.sockets.on('connection',function(socket){
 	app.io.route('my msg',function(req){
 		app.io.room(getRoom(req)).broadcast('new msg', req.data);
 	});
-
+	
 	app.io.route('member', function(req) {
 		async.auto({
 			setMember : function(callback){
