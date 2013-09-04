@@ -20,6 +20,7 @@ var client = exports.client = redis.createClient();
 var sessionStore = new RedisStore({client : client});
 var game_lock = false;
 var cycle = 0;
+var rotationGame = 0;
 var cycle_turn = false;
 var app = express();
 var topic = ["MOVIES","FOODS","PEOPLE","PLACES","GADGETS","COUNTRY","SCHOOL","LITERATURE"];
@@ -71,8 +72,9 @@ passport.use(new FacebookStrategy(config.fb,
 
 passport.use(new TwitterStrategy(config.tw,
   function(accessToken, refreshToken, profile, done) {
-	profile.photourl = 'http://graph.facebook.com/'+profile.username+'/picture';
-	console.log("+++facebook profileurl+++");
+	//profile.photourl = 'http://graph.twitter.com/'+profile.username+'/picture';
+	profile.photourl = profile.photos.value;
+	console.log("+++twitter profileurl+++");
 	console.log(profile.photourl);
     return done(null, profile);
   }
@@ -115,6 +117,8 @@ app.get('/option',function(req,res){
 	res.render('option',{profile:req.session.passport.user.gender,provider:req.session.passport.user.provider});
 });
 app.get('/loading',function(req,res){
+	console.log("XXX---------------- req.user.gender -----------------XXX");
+	console.log(req.user.gender);
 	console.log("XXX---------------- req.user._json.gender -----------------XXX");
 	console.log(req.user._json.gender);
 	console.log("XXX---------------- req.query gender - m -----------------XXX");
@@ -122,8 +126,40 @@ app.get('/loading',function(req,res){
 	console.log("XXX---------------- req.query gender - f -----------------XXX");
 	console.log(req.query["gender-f"]);
 	//if(!req.query["gender-m"] && !req.query["gender-f"])
-	req.user.gender = req.query["gender-m"] || req.query["gender-f"] || req.user._json.gender;
-	//req.user._json.gender = req.user.j
+	var genderStore = new Array();
+	if(req.user.provider == 'facebook'){
+		if(rotationGame === 0){
+			console.log("XXX---------------- FACEBOOK GENDER DEFAULT -----------------XXX");
+			req.user.gender = req.query["gender-m"] || req.query["gender-f"] || req.user._json.gender;
+		}
+		else{
+			console.log("XXX---------------- FACEBOOK GENDER AUTOMATIC -----------------XXX");
+			client.smembers("visitor:"+req.user.gender,function(err,datas){
+				datas.forEach(function(data){
+					if(req.user.id == JSON.parse(data).id){
+						genderStore.push(JSON.parse(data).gender);
+					}
+				});
+			});
+		}	
+	}else{
+		if(rotationGame === 0){
+			console.log("XXX---------------- TWITTER GENDER DEFAULT -----------------XXX");
+			req.user.gender = req.query["gender-m"] || req.query["gender-f"] || req.user._json.gender;
+		}
+		else{
+			console.log("XXX---------------- TWITTER GENDER AUTOMATIC -----------------XXX");
+			client.smembers("visitor:"+req.user.gender,function(err,datas){
+				datas.forEach(function(data){
+					if(req.user.id == JSON.parse(data).id){
+						genderStore.push(JSON.parse(data).gender);
+						return 
+					}
+				});
+			});
+		}
+	}
+	
 	req.user.codename = req.query.codename || req.user.codename;
 	console.log("XXX---------------- LOADING -----------------XXX");
 	console.log(req.user._json);
@@ -215,6 +251,7 @@ app.io.set('authorization', function (handshakeData, callback) {
 	if(handshakeData.headers.cookie){
 	//	console.log(handshakeData.headers.cookie);
 	//	var cookies = cookieParser(cookie.parse(handshakeData.headers.cookie), "peekawoo"),
+		console.log("xxXX Cookie XXxx");
 		console.log(handshakeData.headers.cookie);
 		var cookies = handshakeData.headers.cookie.replace("'","").split(";");
 		if(cookies.length > 1){
@@ -471,6 +508,7 @@ start_chat = function(vf,vm,cycle){
 				}
 				else{
 					console.log("XXXX HERE IT GOES outside XXXX");
+					rotationGame = rotationGame + 1;
 					game_lock = false;
 					app.io.broadcast('game_stop', true);
 				}
