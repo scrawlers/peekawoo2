@@ -19,6 +19,8 @@ var express = require('express.io')
 var client = exports.client = redis.createClient();
 var sessionStore = new RedisStore({client : client});
 var game_lock = false;
+var cycle = 0;
+var cycle_turn = false;
 var app = express();
 app.http().io();
 // all environments
@@ -86,7 +88,7 @@ app.get('/authfb',
   passport.authenticate('facebook'));
 
 app.get('/authtw',
-		  passport.authenticate('twitter'));
+		passport.authenticate('twitter'));
 
 app.get('/authfb/callback',
 		passport.authenticate('facebook', { failureRedirect: '/login' }),
@@ -112,18 +114,33 @@ app.get('/option',function(req,res){
 	res.render('option',{profile:req.session.passport.user.gender,provider:req.session.passport.user.provider});
 });
 app.get('/loading',function(req,res){
+	console.log("XXX---------------- req.user._json.gender -----------------XXX");
+	console.log(req.user._json.gender);
+	console.log("XXX---------------- req.query gender - m -----------------XXX");
+	console.log(req.query["gender-m"]);
+	console.log("XXX---------------- req.query gender - f -----------------XXX");
+	console.log(req.query["gender-f"]);
+	//if(!req.query["gender-m"] && !req.query["gender-f"])
 	req.user.gender = req.query["gender-m"] || req.query["gender-f"] || req.user._json.gender;
+	//req.user._json.gender = req.user.j
 	req.user.codename = req.query.codename || req.user.codename;
+	console.log("XXX---------------- LOADING -----------------XXX");
+	console.log(req.user._json);
+	console.log("XXX------------------------------------------XXX");
+	console.log(req.user.gender);
+	console.log("XXX------------------------------------------XXX");
 	res.render('loading',{user: req.user});
 });
 
 app.get('/ranking',function(req,res){
 	var user = req.user;
-	client.smembers('visitor:'+user.id,function(err,data){
+	client.smembers('visitor:'+user.id,function(err,datas){
 		console.log("+++++Data Content Query+++++");
-		console.log(data);
-		console.log("+++++Data Content After Parse+++++");
-		console.log(data);
+		console.log(datas);
+		var likes = new Array();
+		datas.forEach(function(data){
+			likes.push(JSON.parse(data));
+		});
 		var up = {};
 		up.id = user.id;
 		up.username = user.username;
@@ -133,7 +150,7 @@ app.get('/ranking',function(req,res){
 		up.codename = user.codename;
 		console.log("+++++UP content+++++");
 		console.log(up);
-		res.render('ranking',{user:up,chatmate:data});
+		res.render('ranking',{user:up,chatmate:likes});
 	});
 });
 
@@ -151,24 +168,43 @@ app.get('/chat/:room',function(req,res){
 		}
 		console.log(data);
 		console.log(req.user.photourl);
-		var up = {};
-		if(req.user.provider=='twitter'){
-			gender = req.user.gender
-			console.log("****GENDER IF Twitter USE****");
-			console.log(gender);
-			console.log("data."+gender+".gender");
-			//up.gender = "data."+gender+".gender"
+		var container;
+		var listgender = new Array();
+		if(req.user.gender == data.male.gender){
+			container = data.female.gender;
+		}else{
+			container = data.male.gender;
 		}
-		else{
+		client.smembers("visitor:"+container,function(err,results){
+			console.log("****LIST of Opposite Gender****");
+			console.log(listgender);
+			results.forEach(function(key){
+				console.log(key);
+				console.log(JSON.parse(key));
+				listgender.push(JSON.parse(key));
+			});
+			//outside the smembers put dated 9-4-13 10:22am
+			console.log("****Complete List of Opposite Gender****");
+			console.log(listgender);
+			var up = {};
+			//if(req.user.provider=='twitter'){
+				gender = req.user.gender;
+				console.log("****GENDER IF Twitter USE****");
+				console.log(gender);
+			//	console.log("data."+gender+".gender");
+			//	up.gender = "data."+gender+".gender"
+			//}
+			//else{
+				up.gender = req.user.gender;
+			//}
+			up.id = req.user.id;
+			up.username = req.user.username;
+			up.photourl = req.user.photourl;
+			up.provider = req.user.provider;
+			up.codename = req.user.codename;
+			res.render('chat',{user: up, room: data, listgen: listgender});
 			
-			up.gender = req.user.gender;
-		}
-		up.id = req.user.id;
-		up.username = req.user.username;
-		up.photourl = req.user.photourl;
-		up.provider = req.user.provider;
-		up.codename = req.user.codename;
-		res.render('chat',{user: up,room : data});
+		});
 	});
 	
 });
@@ -193,9 +229,10 @@ app.io.set('authorization', function (handshakeData, callback) {
 			if(err || !session){
 				return callback("Error retrieving session!",false);
 			}
-			handshakeData.peekawoo = {
-					user : session.passport.user
+			handshakeData.peekawoo = {	
+				user : session.passport.user
 			};
+			console.log("===== Connecting . . . =====");
 			return callback(null,true);
 		});
 	}
@@ -300,13 +337,23 @@ app.io.sockets.on('connection',function(socket){
 			}
 		},function(err,result){
 			console.log(result);
-			if(result.getMaleVisitor.length >= 1 && result.getFemaleVisitor.length >= 1){
+			//if(result.getMaleVisitor.length >= 1 && result.getFemaleVisitor.length >= 1){
+			//Change condition if male == female
+			if(result.getMaleVisitor.length == result.getFemaleVisitor.length){
+				cycle_game = Number((result.getMaleVisitor.length + result.getFemaleVisitor.length) /2) ;
+				if(cycle == cycle_game){
+					game_lock = true;
+				}
+				else{
+					cycle = cycle_game;
+					game_lock = false;
+				}
 				if(!game_lock){
 					game_lock = true;
-					console.log("starting game in 3 sec");
+					console.log("starting game in 30 sec");
 					setTimeout(function(){
 						start_game();
-					},60000);
+					},30000);
 				}
 			}
 		});
@@ -326,7 +373,12 @@ start_chat = function(vf,vm,cycle){
 				if(vm[i+1]){
 					new_vm.push(vm[i+1]);
 				}
-				
+				console.log("female length");
+				console.log(vf.length);
+				console.log("female content");
+				console.log(vf[i]);
+				console.log("male content");
+				console.log(vm[i]);
 				if(vf[i] && vm[i]){
 					var vfs = JSON.parse(vf[i]);
 					var vms = JSON.parse(vm[i]);
@@ -335,22 +387,49 @@ start_chat = function(vf,vm,cycle){
 						male : vms,
 						female : vfs
 					};
-					console.log("++++++getting blank room++++++");
-					console.log(room);
-					console.log("++++++++++++++++++++++++++++++");
-					//client.srem(room.name,JSON.stringify(room),function(){
+					
+					//if(cycle_turn){
+					//	var vfs2,vms2;
+					//	if(i===0){
+					//		vfs2 = JSON.parse(vf[vf.length-1]);
+					//		vms2 = JSON.parse(vm[vf.length-1]);
+					//	}
+					//	else{
+					//		vfs2 = JSON.parse(vf[i-1]);
+					//		vms2 = JSON.parse(vm[i-1]);
 						
+					//	}
+					//	var room2 = {
+					//			name : vms2.id + "-" + vfs2.id,
+					//			male : vms2,
+					//			female : vfs2
+					//		};
+					//	req.io.room(room.name).broadcast('previous',room2);
+					//}
+					//for location of smembers to check if user already chatted
+					//client.smembers(room.name,function(err,result_query){
+					//	console.log("Check if already exist!!");
+					//	var display = result_query;
+					//	console.log(display);
+					//	if(display == ""){
+					//		console.log("OOOOO Chat Game OOOOO");
+					//		app.io.broadcast(vfs.id, room);
+					//		app.io.broadcast(vms.id, room);
+					//	}
 					//});
+					
 					client.srem(room.name,JSON.stringify(room));
 					client.sadd(room.name,JSON.stringify(room));
+					//client.smembers(room.name,function(err,result_query){
+					//	console.log("Inserted new room!!");
+					//	var display2 = result_query;
+					//	console.log(display2);
+					//});
+					
 					rooms.push(room);
-					console.log("++++Locating image++++");
-					console.log(room);
-					console.log("++++++++++++++++++++++");
+					console.log("=== Start Conversation ===");
 					app.io.broadcast(vfs.id, room);
 					app.io.broadcast(vms.id, room);
-					
-					
 				}
 				else{
 					if(vf[i]){
@@ -382,16 +461,18 @@ start_chat = function(vf,vm,cycle){
 				console.log("@@@@@CYCLE@@@@@");
 				console.log(cycle);
 				console.log(rooms.length);
-				cycle = cycle + 1;
+				cycle = cycle + 1; //put after the if condition
 				if(cycle < rooms.length){
+					console.log("XXXX HERE IT GOES inside XXXX");
+					cycle_turn = true;
 					start_chat(vf,new_vm,cycle);
 				}
 				else{
+					console.log("XXXX HERE IT GOES outside XXXX");
 					game_lock = false;
 					app.io.broadcast('game_stop', true);
 				}
-				
-			},60000);
+			},30000);
 		},
 		
 	},function(err,result){
@@ -399,6 +480,7 @@ start_chat = function(vf,vm,cycle){
 	});
 };
 
+//Game chat arrange
 start_game = function(){
 	async.auto({
 		getMaleVisitor : function(callback){
@@ -440,4 +522,4 @@ client.keys('*', function(err, keys) {
     console.log('Deletion of all redis reference ', err || "Done!");
 });
 
-app.listen(3000);
+app.listen(80);

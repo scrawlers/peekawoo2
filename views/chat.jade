@@ -35,11 +35,12 @@ block content
                 input(type='hidden',id='room', value=room.name)
                 input(type='hidden',id='chatm8', value=JSON.stringify(room))
                 input(type="hidden",id="user",value=JSON.stringify(user))
+                input(type="hidden",id="list",value=JSON.stringify(listgen))
                 #r1.rate_widget
                     #rate.ratings_chick()
     script(src="/socket.io/socket.io.js")
     script(defer, src="/javascripts/chat.js")
-    script
+    script.
         function set_by_offset1(min,sec) {
             /*** room countdown ***/
             $('#left-time').stopCountDown();

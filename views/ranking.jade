@@ -14,10 +14,10 @@ block content
                         - var i =0;
                         each sample in chatmate
                             .img-photo
-                                img.chat_photo(id=JSON.parse(sample).codename, src=JSON.parse(sample).photourl)
-                            p.chat-mate=JSON.parse(sample).codename
-                            a#fblinkicon(href="http://facebook.com/"+JSON.parse(sample).username)
-                            a#twlinkicon(href="http://twitter.com/"+JSON.parse(sample).username)
+                                img.chat_photo(id=sample.codename, src=sample.photourl)
+                            p.chat-mate=sample.codename
+                            a#fblinkicon(href="http://facebook.com/"+sample.username)
+                            a#twlinkicon(href="http://twitter.com/"+sample.username)
                         - i++
                 .submit-part
                     button#submit_rating(type='button') Go back and mingle some more!
