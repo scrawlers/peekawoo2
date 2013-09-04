@@ -53,29 +53,6 @@ $(function(){
 	//alert(list_gen);
 	//alert(list_gen[0]);
 	//alert(list_gen[0].id);
-	socket.on('previous',function(data){
-		var chatmates = data;
-		var chatid = {};
-		if(user.gender == my_chatm8.male.gender){
-			chatid = my_chatm8.female.id; 
-		}
-		else{
-			chatid = my_chatm8.male.id;
-		}
-		for(var i = 0; i < chatmates.length; i++ ){
-			if(chatid == chatmates[i].id){
-				if(i === 0){
-					alert("DULO");
-					$(".previous-photo").html("<img class='ppimg' src='"+chatmates[chatmates.length].photourl+"'></img>");
-				}
-				else{
-					alert("UNA");
-					$(".previous-photo").html("<img class='ppimg' src='"+chatmates[i-1].photourl+"'></img>");
-				}
-				
-			}
-		}
-	});	
 	
 	$('.ratings_chick').click(
 		function(){

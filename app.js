@@ -73,7 +73,7 @@ passport.use(new FacebookStrategy(config.fb,
 passport.use(new TwitterStrategy(config.tw,
   function(accessToken, refreshToken, profile, done) {
 	//profile.photourl = 'http://graph.twitter.com/'+profile.username+'/picture';
-	profile.photourl = profile.photos.value;
+	profile.photourl = profile.photos[0].value;
 	console.log("+++twitter profileurl+++");
 	console.log(profile.photourl);
     return done(null, profile);
@@ -304,7 +304,13 @@ app.io.sockets.on('connection',function(socket){
 		console.log("++++signout req.data.user++++");
 		console.log(req.data.user);
 		console.log("+++++removing gender and room declare+++++");
-		var removegender = req.data.user;
+		var removegender;
+		if(req.data.user.id == req.data.room.male.id){
+			removegender = req.data.room.male;
+		}else{
+			removegender = req.data.room.female;
+		}
+		
 		var removeroom = req.data.room;
 		console.log(removegender);
 		console.log(removeroom);
@@ -509,6 +515,8 @@ start_chat = function(vf,vm,cycle){
 				else{
 					console.log("XXXX HERE IT GOES outside XXXX");
 					rotationGame = rotationGame + 1;
+					console.log("rotationGame");
+					console.log(rotationGame);
 					game_lock = false;
 					app.io.broadcast('game_stop', true);
 				}
