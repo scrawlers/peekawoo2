@@ -23,6 +23,7 @@ var cycle = 0;
 var rotationGame = 0;
 var cycle_turn = false;
 var app = express();
+var newuser = false;
 var topic = ["MOVIES","FOODS","PEOPLE","PLACES","GADGETS","COUNTRY","SCHOOL","LITERATURE"];
 app.http().io();
 // all environments
@@ -81,7 +82,7 @@ passport.use(new TwitterStrategy(config.tw,
 ));
 
 app.get("/",function(req,res){
-	res.render('subscribe');
+	res.render('login');
 });
 
 app.get("/login",function(req,res){
@@ -103,6 +104,12 @@ app.get('/authtw/callback',
 		passport.authenticate('twitter', { failureRedirect: '/login' }),
 		function(req, res) {
 			res.redirect('/option');
+});
+
+app.get('/error',function(req,res){
+	console.log("xxXXxx ERROR PAGE of Kickout xxXXxx");
+	console.log(req.user);
+	res.render('error');
 });
 
 app.get('/subscribe2',function(req,res){
@@ -140,6 +147,9 @@ app.get('/loading',function(req,res){
 						genderStore.push(JSON.parse(data).gender);
 					}
 				});
+				if(!genderStore){
+					req.user.gender = req.query["gender-m"] || req.query["gender-f"] || req.user._json.gender;
+				}
 			});
 		}	
 	}else{
@@ -153,9 +163,11 @@ app.get('/loading',function(req,res){
 				datas.forEach(function(data){
 					if(req.user.id == JSON.parse(data).id){
 						genderStore.push(JSON.parse(data).gender);
-						return 
 					}
 				});
+				if(!genderStore){
+					req.user.gender = req.query["gender-m"] || req.query["gender-f"] || req.user._json.gender;
+				}
 			});
 		}
 	}
@@ -171,13 +183,39 @@ app.get('/loading',function(req,res){
 
 app.get('/ranking',function(req,res){
 	var user = req.user;
+	var likes = new Array();
+	var finalLikes = new Array();
 	client.smembers('visitor:'+user.id,function(err,datas){
 		console.log("+++++Data Content Query+++++");
 		console.log(datas);
-		var likes = new Array();
 		datas.forEach(function(data){
+			console.log("xxXXxx PEOPLE WHO LIKE YOU");
+			console.log(data);
 			likes.push(JSON.parse(data));
 		});
+		console.log("+++++Likes Content+++++");
+		console.log(likes);
+		for(var i = 0 ; i < likes.length ; i++){
+			client.smembers('visitor:'+likes[i].id,function(err,liked){
+				if(!liked[0]){
+					console.log("xxXXxx NO ONE LIKE YOU xxXXxx");
+					liked = {};
+				}
+				else{
+					console.log("xxXXxx OTHER PEOPLE LIKE DATA xxXXxx");
+					console.log(liked);
+					liked.forEach(function(like){
+						console.log("xxXXxx LIKE DATA xxXXxx");
+						console.log(like);
+						if(JSON.parse(like).id == req.user.id){
+							console.log("xxXXxx RESULT OF LIKE xxXXxx");
+							console.log(finalLikes);
+							finalLikes.push = likes[i];
+						}
+					});
+				}
+			});
+		}
 		var up = {};
 		up.id = user.id;
 		up.username = user.username;
@@ -187,7 +225,9 @@ app.get('/ranking',function(req,res){
 		up.codename = user.codename;
 		console.log("+++++UP content+++++");
 		console.log(up);
-		res.render('ranking',{user:up,chatmate:likes});
+		console.log("+++++UP content+++++");
+		console.log(finalLikes);
+		res.render('ranking',{user:up,chatmate:finalLikes});
 	});
 });
 
@@ -366,10 +406,17 @@ app.io.sockets.on('connection',function(socket){
 				up.gender = user.gender;
 				up.photourl = user.photourl;
 				up.provider = user.provider;
+				client.smember("visitor:"+user.gender,function(err,datos){
+					if(!datos[0]){
+						newuser = true;
+					}
+					else{
+						newuser = false;
+					}
+				});
 				client.srem("visitor:"+user.gender,JSON.stringify(up));
 				client.sadd("visitor:"+user.gender,JSON.stringify(up));
 				callback(null,true);
-				
 				console.log("+++++++checking+++++++");
 				console.log(up);
 				console.log("+++++++checking+++++++");
@@ -382,28 +429,28 @@ app.io.sockets.on('connection',function(socket){
 			}
 		},function(err,result){
 			console.log(result);
-			//if(result.getMaleVisitor.length >= 1 && result.getFemaleVisitor.length >= 1){
+			if(result.getMaleVisitor.length >= 1 && result.getFemaleVisitor.length >= 1){
 			//Change condition if male == female
-			if(result.getMaleVisitor.length == result.getFemaleVisitor.length){
-				cycle_game = Number((result.getMaleVisitor.length + result.getFemaleVisitor.length) /2) ;
-				if(cycle == cycle_game){
-					game_lock = true;
-				}
-				else{
-					cycle = cycle_game;
-					game_lock = false;
-				}
-				if(!game_lock){
-					game_lock = true;
-					console.log("starting game in 30 sec");
-					setTimeout(function(){
-						start_game();
-					},30000);
+				//if(result.getMaleVisitor.length == result.getFemaleVisitor.length){
+				//cycle_game = Number((result.getMaleVisitor.length + result.getFemaleVisitor.length) /2) ;
+				//if(cycle == cycle_game){
+				//	game_lock = true;
+				//}
+				//else{
+				//	cycle = cycle_game;
+				//	game_lock = false;
+				//}
+				if(newuser){
+					if(!game_lock){
+						game_lock = true;
+						console.log("starting game in 30 sec");
+						setTimeout(function(){
+							start_game();
+						},30000);
+					}
 				}
 			}
 		});
-		
-		
 	});
 });
 
@@ -479,11 +526,13 @@ start_chat = function(vf,vm,cycle){
 				else{
 					if(vf[i]){
 						var vfs = JSON.parse(vf[i]);
+						client.srem("visitor:female",vf[i]);
 						app.io.broadcast(vfs.id, false);
 						console.log("kickout: " + vfs.id);
 					}
 					if(vm[i]){
 						var vms = JSON.parse(vm[i]);
+						client.srem("visitor:male",vm[i]);
 						console.log("kickout: " + vms.id);
 						app.io.broadcast(vms.id, false);
 					}
@@ -492,11 +541,13 @@ start_chat = function(vf,vm,cycle){
 			for(var j=i;j<vm.length;j++){
 				if(vf[i]){
 					var vfs = JSON.parse(vf[i]);
+					client.srem("visitor:female",vf[i]);
 					app.io.broadcast(vfs.id, false);
 					console.log("kickout: " + vfs.id);
 				}
 				if(vm[i]){
 					var vms = JSON.parse(vm[i]);
+					client.srem("visitor:female",vm[i]);
 					console.log("kickout: " + vms.id);
 					app.io.broadcast(vms.id, false);
 				}
@@ -518,6 +569,7 @@ start_chat = function(vf,vm,cycle){
 					console.log("rotationGame");
 					console.log(rotationGame);
 					game_lock = false;
+					newuser = false;
 					app.io.broadcast('game_stop', true);
 				}
 			},30000);
