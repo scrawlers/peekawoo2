@@ -398,22 +398,29 @@ app.io.sockets.on('connection',function(socket){
 	
 	app.io.route('member', function(req) {
 		async.auto({
+			checkIfExist : function(callback){
+				var gender = JSON.parse(req.data);
+				var me = {};
+				me.id = gender.id;
+				me.username = gender.username;
+				me.gender = gender.gender;
+				me.photourl = gender.photourl;
+				me.provider = gender.provider;
+				client.sismember("visitor:"+me.gender,JSON.stringify(me),callback);
+			},
 			setMember : function(callback){
 				var user = JSON.parse(req.data);
+				//var listGender = result.checkIfExist;
 				var up = {};
 				up.id = user.id;
 				up.username = user.username;
 				up.gender = user.gender;
 				up.photourl = user.photourl;
 				up.provider = user.provider;
-				client.smember("visitor:"+user.gender,function(err,datos){
-					if(!datos[0]){
-						newuser = true;
-					}
-					else{
-						newuser = false;
-					}
-				});
+				//console.log("xxXXxx CHECK IF EXIST xxXXxx");
+				//console.log(listGender);
+				//console.log(result.checkIfExist);
+				//newuser = true;
 				client.srem("visitor:"+user.gender,JSON.stringify(up));
 				client.sadd("visitor:"+user.gender,JSON.stringify(up));
 				callback(null,true);
@@ -429,6 +436,16 @@ app.io.sockets.on('connection',function(socket){
 			}
 		},function(err,result){
 			console.log(result);
+			if(result.checkIfExist == 0){
+				console.log("NOTHING");
+				//client.sadd("visitor:"+user.gender,JSON.stringify(up));
+				console.log("xxXXxx IM NEW HERE xxXXxx");
+				newuser = true;
+				
+			}
+			else{
+				newuser = false;
+			}
 			if(result.getMaleVisitor.length >= 1 && result.getFemaleVisitor.length >= 1){
 			//Change condition if male == female
 				//if(result.getMaleVisitor.length == result.getFemaleVisitor.length){
@@ -440,6 +457,7 @@ app.io.sockets.on('connection',function(socket){
 				//	cycle = cycle_game;
 				//	game_lock = false;
 				//}
+				console.log(newuser);
 				if(newuser){
 					if(!game_lock){
 						game_lock = true;
