@@ -10,7 +10,6 @@ socket.on(user.id,function(data){
 	else{
 		window.location = '/error';
 	}
-
 });
 socket.on('game_stop',function(){
 	window.location = '/loading';

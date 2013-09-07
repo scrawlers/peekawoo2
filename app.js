@@ -183,39 +183,11 @@ app.get('/loading',function(req,res){
 
 app.get('/ranking',function(req,res){
 	var user = req.user;
+	console.log(req.user);
 	var likes = new Array();
 	var finalLikes = new Array();
-	client.smembers('visitor:'+user.id,function(err,datas){
-		console.log("+++++Data Content Query+++++");
-		console.log(datas);
-		datas.forEach(function(data){
-			console.log("xxXXxx PEOPLE WHO LIKE YOU");
-			console.log(data);
-			likes.push(JSON.parse(data));
-		});
-		console.log("+++++Likes Content+++++");
-		console.log(likes);
-		for(var i = 0 ; i < likes.length ; i++){
-			client.smembers('visitor:'+likes[i].id,function(err,liked){
-				if(!liked[0]){
-					console.log("xxXXxx NO ONE LIKE YOU xxXXxx");
-					liked = {};
-				}
-				else{
-					console.log("xxXXxx OTHER PEOPLE LIKE DATA xxXXxx");
-					console.log(liked);
-					liked.forEach(function(like){
-						console.log("xxXXxx LIKE DATA xxXXxx");
-						console.log(like);
-						if(JSON.parse(like).id == req.user.id){
-							console.log("xxXXxx RESULT OF LIKE xxXXxx");
-							console.log(finalLikes);
-							finalLikes.push = likes[i];
-						}
-					});
-				}
-			});
-		}
+
+	var finishedRequest = function(){
 		var up = {};
 		up.id = user.id;
 		up.username = user.username;
@@ -228,6 +200,52 @@ app.get('/ranking',function(req,res){
 		console.log("+++++UP content+++++");
 		console.log(finalLikes);
 		res.render('ranking',{user:up,chatmate:finalLikes});
+	}
+	
+	client.smembers('visitor:'+user.id,function(err,datas){
+		console.log("+++++Data Content Query+++++");
+		console.log(datas);
+		console.log(datas.length);
+		var countData;
+		countData = datas.length;
+		console.log("xxXXxx Count Content Value xxXXxx");
+		console.log(countData);
+		if(countData > 0){
+			datas.forEach(function(data){
+				console.log("xxXXxx PEOPLE WHO LIKE YOU");
+				console.log(data);
+				//countData = data.length;
+				//console.log(countData);
+				likes.push(data);
+				client.smembers('visitor:'+JSON.parse(data).id,function(err,liked){
+					if(!liked[0]){
+						console.log("xxXXxx NO ONE LIKE YOU xxXXxx");
+						liked = {};
+					}
+					else{
+						console.log("xxXXxx OTHER PEOPLE LIKE DATA xxXXxx");
+						console.log(liked);
+						liked.forEach(function(like){
+							console.log("xxXXxx LIKE DATA xxXXxx");
+							console.log(like);
+							if(JSON.parse(like).id == req.user.id){
+								console.log("xxXXxx RESULT OF LIKE xxXXxx");
+								finalLikes.push(datas);
+							}
+						});
+					} 
+					countData-=1;
+					if(countData <= 0){
+						finishedRequest();
+					}
+				});
+				
+	
+			});
+		}else{
+			finishedRequest();
+		}
+			
 	});
 });
 
@@ -374,6 +392,13 @@ app.io.sockets.on('connection',function(socket){
 		client.srem("visitor:"+mate.id,JSON.stringify(user));
 		console.log("====add user to mate====");
 		client.sadd("visitor:"+mate.id,JSON.stringify(user));
+		//if(user.gender == 'male'){
+		//	client.sadd("like:"+user.id+"-"+mate.id,JSON.stringify(user));
+		//}
+		//else{
+		//	client.sadd("like:"+mate.id+"-"+user.id,JSON.stringify(user));
+		//}
+		
 	});
 	
 	app.io.route('uninsert',function(req){
@@ -464,7 +489,7 @@ app.io.sockets.on('connection',function(socket){
 						console.log("starting game in 30 sec");
 						setTimeout(function(){
 							start_game();
-						},30000);
+						},15000);
 					}
 				}
 			}
@@ -576,6 +601,7 @@ start_chat = function(vf,vm,cycle){
 				console.log(cycle);
 				console.log(rooms.length);
 				cycle = cycle + 1; //put after the if condition
+				
 				if(cycle < rooms.length){
 					console.log("XXXX HERE IT GOES inside XXXX");
 					cycle_turn = true;
@@ -590,7 +616,7 @@ start_chat = function(vf,vm,cycle){
 					newuser = false;
 					app.io.broadcast('game_stop', true);
 				}
-			},30000);
+			},15000);
 		},
 		
 	},function(err,result){

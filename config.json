@@ -2,7 +2,7 @@
 "fb" : {
 	"clientID": "584276618297699",
     "clientSecret": "40f90b6491ba942d3276b20a935bf505",
-    "callbackURL": "http://192.168.3.120/authfb/callback"
+    "callbackURL": "http://172.20.10.5/authfb/callback"
  },
  "tw" : {
 		"consumerKey": "uSBZ86eTy3sSJ3M49seaA",
